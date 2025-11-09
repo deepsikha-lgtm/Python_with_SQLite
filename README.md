@@ -35,9 +35,9 @@ It covers database creation, data insertion, querying, and performing statistica
 
 Make sure you have Python and the following libraries installed:
 
-```bash
+```
 pip install pandas
-
+```
 Note: sqlite3 is included in Python’s standard library, so no extra installation is needed.
 
 🚀 How to Run
@@ -46,11 +46,9 @@ Save the script (e.g., as student_db_analysis.py).
 
 Run it in your terminal or IDE:
 
-bash
-
-Copy code
-
+```
 python student_db_analysis.py
+```
 
 The script will:
 
@@ -75,7 +73,7 @@ Save the final DataFrame to a CSV file (sqldata_new.csv)
 1. Database Setup
 
 python
-Copy code
+```
 import sqlite3
 conn = sqlite3.connect('college.db')
 cursor = conn.cursor()
@@ -90,13 +88,13 @@ CREATE TABLE IF NOT EXISTS students (
     city TEXT
 )
 ''')
+```
 
 2. Insert Sample Data
 
 python
 
-Copy code
-
+```
 cursor.executemany('''
 INSERT INTO students (student_id, name, department, marks, gender, city)
 VALUES (?, ?, ?, ?, ?, ?)
@@ -107,27 +105,28 @@ VALUES (?, ?, ?, ?, ?, ?)
 ])
 
 conn.commit()
+```
 
 3. Read and Analyze Data using Pandas
 
 python
 
-Copy code
-
+```
 import pandas as pd
 
 df = pd.read_sql("SELECT * FROM students", conn)
 print(df.describe())  # Summary statistics
 print(df.groupby('department')['marks'].mean())
 print(df[df['marks'] > 80])
+```
 
 4. Export Data to CSV
 
 python
 
-Copy code
-
+```
 df.to_csv("sqldata_new.csv", index=True)
+```
 
 📊 Sample Output
 
@@ -135,23 +134,22 @@ Data Overview:
 
 python-repl
 
-Copy code
-
+```
     student_id    name  department  marks gender          city
 0             1   Alice         CSE     85      F       Chennai
 1             2     Bob          IT     90      M    Coimbatore
-...
+```
 
 Summary:
 
-yaml
-Copy code
+```
 Average Marks: 82.6
 department
 AI     74.2
 CSE    85.2
 IT     83.4
 Name: marks, dtype: float64
+```
 
 🧾 Key Learnings
 
